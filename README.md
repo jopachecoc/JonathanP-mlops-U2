@@ -1,46 +1,65 @@
-# Construcción de la Aplicación Web e Imagen Docker
+Realizado por Jonathan Pacheco
 
-## Desarrollo de la Solución
+# Predicción de Enfermedades
 
-### 1. Función de Clasificación Médica
-Se construyó la función en Python que contiene las reglas para clasificar enfermedades según:
-- Pulso cardíaco
-- Presión arterial
-- Temperatura corporal
+Descripción: Proyecto que muestra una aplicación mediante el uso de Flask para predecir el estado de un paciente haciendo como uso el pulso, temperatura, frecuencia cardiaca y como salida arroja las siguientes clasificaciones.
 
-El código se almacenó en el archivo:  
-📄 `diagnostico.py`
+- NO ENFERMO
+- ENFERMEDAD LEVE
+- ENFERMEDAD AGUDA
+- ENFERMEDAD CRÓNICA
 
-### 2. Aplicación Web con Flask
-Se desarrolló la interfaz web usando Flask que:
-- Importa la función del archivo `diagnostico.py`
-- Expone un endpoint REST para diagnósticos
-- El código principal se almacena en:  
-📄 `main.py`
 
-### 3. Gestión de Dependencias
-Se creó el archivo:  
-📄 `requirements.txt`  
-Conteniendo todas las dependencias necesarias:
-```
-text
-flask==2.3.2
-numpy==1.24.3
-```
+## Prerrequisitos para poder ejecutar la aplicación
 
-# Pasos a tener en cuenta para la ejecucion de la imagen
-Para la ejecucion de este tener en cuenta:
+* Tener Docker instalado en su computadora
+* Tener VScode u otro IDE para ejecutar código python.
 
-# 1 comando para cargar la imagen.
-```
-docker load -i imagen.tar
-```
-#2 comando para ejecutar la imagen
-```
-docker run --rm diagnostico_imagen
-```
-#3 ispecionar el front 
-Si desea inspeccionar el endpoint de prediccion dirigirse 
-```
-localhost:5000/diagnostico
-```
+
+# Archivos adjuntos
+
+* diagnosticos.py 						Funcion que realiza el proceso de clasificación del tipo de enfermedad 
+* main.py								Funcion de codigo fuente primaria 
+* requeriments.txt						Requerimientos para que main pueda ser correctamente
+* Dockerfile							Archivo para crear la imagen
+* README.md								Descripción reproducir el proceso.
+
+
+## pasos para la construcción de la imagen docker
+
+### 1. Colocar todos los archivos en la misma carpeta (archivos mensionados anteriormente)
+
+* diagnosticos.py 
+* main.py
+* requeriments.txt
+* Dockerfile
+* README.md
+
+### 2. Construir la imagen con Docker
+
+Ejecutar el siguiente comando en la terminal. (previo a esto ubicarse en la localización de la carpeta de archivos creada anteriormente)
+
+```docker build -t primera_app1.```  (colocar el punto)
+
+### 3. Ejecutar la imagen
+
+```docker run -p primera_app1```
+
+levantara la imagen el el puerto 5000
+
+### 4. abrir en la siguiente ruta del navegador para ver la imagen 
+
+http://127.0.0.1:5000/diagnostico
+
+### 5. Obtener las métricas, diligencias los datos de:
+Diligenciar cada uno de los campos en la aplicacion, por ejemplo:
+
+presión sistólica : 85
+Presión diastólica: 100
+Pulso: 65
+Temperatura:36
+
+Click en “evaluar diagnóstico“.
+
+Luego verás el resultado de la clasificación del paciente
+
