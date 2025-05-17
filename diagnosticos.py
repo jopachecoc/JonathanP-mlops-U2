@@ -23,7 +23,7 @@ def enfermedad1(Presion_sistolica, Presion_diastolica, Pulso, Temperatura):
     if (Presion_sistolica < 120 and Presion_diastolica < 80 and Pulso < 100 and Temperatura >= 37.3):
         categoria = 'ENFERMEDAD LEVE'
     elif (Presion_sistolica < 120 and Presion_diastolica < 80 and Pulso >= 100):
-        categoria = 'ENFERMEDAD LEVE'
+        categoria = 'ENFERMEDAD AGUDA'
     elif ((Presion_sistolica >= 120 and Presion_sistolica < 130)  or 
           (Presion_diastolica >= 80 and Presion_diastolica < 83)):
         categoria = 'ENFERMEDAD CRÓNICA'
