@@ -1,5 +1,6 @@
 permissions:
   pull-requests: write
+  issues: write
 
 name: Comentar en Pull Request
 
@@ -11,8 +12,8 @@ jobs:
   comentar:
     runs-on: ubuntu-latest
     steps:
-#      - name: Checkout
-#        uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v3
 
       - name: Comentar en el PR
         uses: thollander/actions-comment-pull-request@v3
