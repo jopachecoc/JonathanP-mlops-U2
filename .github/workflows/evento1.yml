@@ -15,8 +15,15 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
       - name: Comentar en el PR
         uses: thollander/actions-comment-pull-request@v3
         with:
           message: |
             CI/CD en acción. Ejecutando tareas …
+
+
