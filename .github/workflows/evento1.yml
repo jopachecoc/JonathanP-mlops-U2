@@ -1,0 +1,77 @@
+permissions:
+  pull-requests: write
+
+name: Comentar en Pull Request
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize]
+
+jobs:
+  comentar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout            #
+        uses: actions/checkout@v3 #
+
+      - name: Comentar en el PR
+        uses: thollander/actions-comment-pull-request@v3
+        with:
+          message: |
+            CI/CD en acción. Ejecutando tareas …
+
+
+
+name: Ejecutar pruebas con pytest
+
+on:
+  push:
+    branches: [añadir-github-actions]
+  pull_request:
+    branches: [añadir-github-actions]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clonar el repositorio
+        uses: actions/checkout@v3
+
+      - name: Configurar Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'  # O la versión que usas
+
+      - name: Instalar dependencias
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pytest
+
+      - name: Ejecutar pruebas con pytest
+        run: pytest Test/ 
+
+
+
+permissions:
+  pull-requests: write
+
+name: Comentar en Pull Request
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize]
+
+jobs:
+  comentar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout            #
+        uses: actions/checkout@v3 #
+
+      - name: Comentar en el PR
+        uses: thollander/actions-comment-pull-request@v3
+        with:
+          message: |
+            CI/CD terminado con éxito.
