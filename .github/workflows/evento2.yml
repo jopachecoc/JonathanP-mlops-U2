@@ -39,7 +39,7 @@ jobs:
 
 
       - name: Publicar Docker Image to GPR
-        uses: machine-learning-apps/gpr-docker-publish@master
+        uses: machine-learning-apps/gpr-docker-publish@main
         id: docker
         with:
           IMAGE_NAME: 'diagnostico_completo'                    # Nombre que quieres para la imagen
