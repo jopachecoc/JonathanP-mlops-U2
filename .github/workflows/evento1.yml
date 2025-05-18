@@ -2,7 +2,7 @@ permissions:
   pull-requests: write
   issues: write
 
-name: Comentar en Pull Request entre otros
+name: Comentar en Pull Request entre otros y ot
 
 on:
   pull_request:
