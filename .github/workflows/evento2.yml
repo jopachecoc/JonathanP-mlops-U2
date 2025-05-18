@@ -4,7 +4,7 @@ permissions:
   issues: write
   packages: write  ### necesario 
 
-name: segundo evento  publicar la imagen docker
+name: segundo evento  publicar la imagen docker buena
 
 on:
   pull_request:
