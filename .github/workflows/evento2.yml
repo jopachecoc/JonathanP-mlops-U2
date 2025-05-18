@@ -37,9 +37,8 @@ jobs:
         run: pytest Tests/ --maxfail=1 --disable-warnings -q
 
 
-
       - name: Publicar Docker Image to GPR
-        uses: machine-learning-apps/gpr-docker-publish@main
+        uses: machine-learning-apps/gpr-docker-publish@master
         id: docker
         with:
           IMAGE_NAME: 'diagnostico_completo'                    # Nombre que quieres para la imagen
