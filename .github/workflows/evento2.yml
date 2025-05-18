@@ -2,7 +2,7 @@ permissions:
   pull-requests: write
   issues: write
 
-name: Comentar en Pull Request 
+name: segundo evento  
 
 on:
   pull_request:
