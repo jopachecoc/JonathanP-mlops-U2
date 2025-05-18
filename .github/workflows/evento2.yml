@@ -1,4 +1,4 @@
-name: contrucción de imagen docker 
+name: contrucción de imagen docker y packages
 
 on:
   push:
