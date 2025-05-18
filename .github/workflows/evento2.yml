@@ -54,7 +54,7 @@ jobs:
 
       - name: Build and push Docker image
         run: |
-          IMAGE_NAME=ghcr.io/${{ github.jopachecoc }}/enfermedad_predicha 
+          IMAGE_NAME=ghcr.io/${{ github.repository_owner }}/enfermedad_predicha 
           docker build -t $IMAGE_NAME:latest .
           docker push $IMAGE_NAME:latest
 
