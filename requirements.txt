@@ -1,4 +1,4 @@
 flask == 3.1.0
 requests==2.32.3
-beautifulsoup==3.2.2
+beautifulsoup4==4.12.3
 pytest==7.3.1
