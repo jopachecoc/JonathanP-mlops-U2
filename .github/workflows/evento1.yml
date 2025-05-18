@@ -2,7 +2,7 @@ permissions:
   pull-requests: write
   issues: write
 
-name: Comentar en Pull Request entre otros y ot
+name: Comentar en Pull Request entre otros y otrosmmas
 
 on:
   pull_request:
@@ -29,7 +29,6 @@ jobs:
       - name: inciar el servidor
         run: |
           nohup python main.py &
-          sleep5
 
       - name: Ejecutar pruebas unitarias
         run: pytest Tests/ --maxfail=1 --disable-warnings -q
