@@ -52,7 +52,7 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build and push Docker image contruir la imagen de docker
+      - name: Build and push Docker image
         run: |
           IMAGE_NAME=ghcr.io/${{ github.jopachecoc }}/enfermedad_predicha 
           docker build -t $IMAGE_NAME:latest .
