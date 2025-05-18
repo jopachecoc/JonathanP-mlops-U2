@@ -1,54 +1,64 @@
-
-permissions:
-  pull-requests: write
-  issues: write
-  packages: write  ### necesario para ello 
-
-name: segundo evento  publicar la imagen docker buena
+name: contrucción de imagen docker 
 
 on:
-  pull_request:
-    types: [opened, reopened, synchronize]
+  push:
+    branches:
+      - main
 
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout código
+      - name: Checkout codigo
         uses: actions/checkout@v3
 
-
-      - name: Configurar Python
+      - name: Instalar Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.10'
 
       - name: Instalar dependencias
         run: |
-          python -m pip install --upgrade pip setuptools wheel
-          pip install -r requirements.txt
+          pip install -r dependencias.txt
           pip install pytest requests
+
 
       - name: inciar el servidor
         run: |
           nohup python main.py &
 
-      - name: Ejecutar pruebas unitarias
+      - name: Ejecucion de las pruebas
         run: pytest Tests/ --maxfail=1 --disable-warnings -q
 
 
-      - name: Publicar Docker Image to GPR
-        uses: machine-learning-apps/gpr-docker-publish@master
-        id: docker
-        with:
-          IMAGE_NAME: 'diagnostico_completo'                    # Nombre que quieres para la imagen
-          TAG: 'latest'                           # Etiqueta opcional (puedes poner el PR, commit, etc)
-          DOCKERFILE_PATH: 'Dockerfile'           # Ruta al Dockerfile (ajusta si está en otra carpeta)
-          BUILD_CONTEXT: '.'                      # Contexto de construcción (raíz del repo)
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  build-and-publish:
+    needs: test
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+      contents: read
 
-      - name: Mostrar info de la imagen publicada (opcional)
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push Docker image contruir la imagen de docker
         run: |
-          echo "Imagen publicada: ${{ steps.docker.outputs.IMAGE_SHA_NAME }}"
-          echo "URL de la imagen: ${{ steps.docker.outputs.IMAGE_URL }}"
+          IMAGE_NAME=ghcr.io/${{ github.jopachecoc }}/enfermedad_predicha 
+          docker build -t $IMAGE_NAME:latest .
+          docker push $IMAGE_NAME:latest
+
+
+
+
+
