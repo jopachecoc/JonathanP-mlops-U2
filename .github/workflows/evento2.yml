@@ -1,8 +1,10 @@
+
 permissions:
   pull-requests: write
   issues: write
+  packages: write  ### necesario 
 
-name: segundo evento  
+name: segundo evento  publicar la imagen docker
 
 on:
   pull_request:
@@ -36,5 +38,18 @@ jobs:
 
 
 
+      - name: Publicar Docker Image to GPR
+        uses: machine-learning-apps/gpr-docker-publish@main
+        id: docker
+        with:
+          IMAGE_NAME: 'diagnostico_completo'                    # Nombre que quieres para la imagen
+          TAG: 'latest'                           # Etiqueta opcional (puedes poner el PR, commit, etc)
+          DOCKERFILE_PATH: 'Dockerfile'           # Ruta al Dockerfile (ajusta si está en otra carpeta)
+          BUILD_CONTEXT: '.'                      # Contexto de construcción (raíz del repo)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-
+      - name: Mostrar info de la imagen publicada (opcional)
+        run: |
+          echo "Imagen publicada: ${{ steps.docker.outputs.IMAGE_SHA_NAME }}"
+          echo "URL de la imagen: ${{ steps.docker.outputs.IMAGE_URL }}"
