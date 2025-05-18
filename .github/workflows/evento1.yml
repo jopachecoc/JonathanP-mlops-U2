@@ -28,8 +28,7 @@ jobs:
 
       - name: inciar el servidor
         run: |
-          nohup python main.py &
-          sleep5
+          nohup python main.py
 
       - name: Ejecutar pruebas unitarias
         run: pytest Tests/ --maxfail=1 --disable-warnings -q
