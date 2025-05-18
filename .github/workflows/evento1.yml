@@ -22,15 +22,14 @@ jobs:
 
       - name: Instalar dependencias
         run: |
-          python -m pip install --upgrate pip
+          python -m pip install --upgrade pip
           pip install -r requirements.txt
           pip install pytest requests
 
       - name: inciar el servidor
         run: |
-          nohup python main.py 
-
-		  #sleep 5
+          nohup python main.py &
+          sleep5
 
       - name: Ejecutar pruebas unitarias
         run: pytest Tests/ --maxfail=1 --disable-warnings -q
